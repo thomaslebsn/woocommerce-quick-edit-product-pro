@@ -1,0 +1,9 @@
+nbproject/
+.buildpath
+.project
+.settings/
+.idea/
+logs
+.DS_Store
+*.DS_Store
+

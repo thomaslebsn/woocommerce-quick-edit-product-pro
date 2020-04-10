@@ -1,0 +1,880 @@
+.block-cta{
+    text-align: right;
+    margin-bottom: 10px;
+}
+
+#prfx_meta{
+    overflow: hidden;
+    padding-bottom: 1em;
+}
+
+#prfx_meta p{
+    clear: both;
+}
+
+.prfx-row-title{
+    /*display: block;*/
+    /*float: left;*/
+    width: 200px;
+}
+
+.prfx-row-content{
+    float: left;
+    padding-bottom: 1em;
+}
+
+.prfx-row-content label{
+    display: block;
+    line-height: 1.75em;
+}
+
+.add-new td, .add-new th{
+    background-color: chartreuse ;
+}
+
+.modifying-product td, .modifying-product th{
+    background-color: #cfe4f9 !important;
+}
+
+#the-list .input-text{
+    /*cursor: pointer;*/
+}
+
+#the-list .edit-inline{
+    /*cursor: pointer;*/
+}
+
+#the-list select[multiple]{
+    height: 180px;
+    width: 200px;
+}
+
+#the-list .image-thumb-gallery{
+    /*cursor: pointer;*/
+    max-width: 40px;
+    max-height: 40px;
+    width: auto;
+    height: auto;
+}
+#the-list .remove-gallery-image, .wrapper-gallery-plus, .remove-thumbnail{
+    cursor: pointer;
+}
+#overlay {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    background: #ffffff;
+    opacity: 0.9;
+    filter: alpha(opacity=80);
+    z-index: 9999999;
+}
+
+#loading {
+    width: 200px;
+    height: auto;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto auto;
+    top: 0;
+    bottom: 0;
+    z-index: 9999999;
+}
+
+.input-text-editable{
+    /*position: relative;*/
+    /*width: 100%;*/
+}
+
+.remove-gallery-image, .remove-thumbnail{
+    display: none !important;
+    position: absolute !important;
+    top: 0;
+    right: 0;
+}
+
+.wrap-gallery-image{
+    /*cursor: pointer;*/
+    position: relative;
+    float: left;
+}
+#the-list .wrap-thumbnail{
+    cursor: pointer;
+    position: relative;
+    float: left;
+}
+
+.wrapper-wp-list-table {
+    overflow-x: auto;
+    overflow-y: hidden;
+    clear: both;
+}
+/* Make scroll bar at bottom for table*/
+.table-view-bottom-scroll {
+    overflow-x: scroll;
+    overflow-y: hidden;
+    height: 20px;
+    position: fixed;
+    bottom: 0;
+    z-index: 10;
+}
+.table-view-bottom-scroll .scroll-div {
+    overflow-x: scroll;
+    height: inherit;
+    overflow-y: hidden;
+}
+/* End make scroll bar at bottom for table*/
+.wrapper-wp-list-table th,
+.wrapper-wp-list-table td,
+.wrapper-wp-list-table .widefat tbody .check-column {
+    vertical-align: middle;
+}
+
+.wrapper-wp-list-table .widefat tbody .check-column {
+    padding-top: 0;
+    line-height: 1;
+    font-size: 0;
+}
+.wrapper-wp-list-table .button-edit-description{
+    margin: 5px 5px 5px 0;
+    min-width: 100px;
+}
+.wrapper-wp-list-table .button-cancel-description{
+    margin: 5px 5px;
+    min-width: 100px;
+}
+.wp-list-table {
+    table-layout: auto !important;
+}
+.wp-list-table td.column-cb {
+    vertical-align: inherit;
+}
+.wp-list-table td.column-cb input#cb-select-all-1,input#cb-select-all-2 {
+    margin-top: -4px !important;
+}
+
+.wp-list-table .bootstrap-wrapper input[type=checkbox]{
+    margin: 0 !important;
+}
+
+#screen-options-wrap span.tips {
+    cursor: pointer;
+}
+.alignleft button.button {
+    margin-top: 1px;
+}
+
+/* Styling for icon plus gallery */
+#the-list .wrapper-gallery-plus{
+    width: 38px;
+    height: 38px;
+    text-align: center;
+    border: 1px dashed #5e5e5e;
+    margin: 1px 1px;
+}
+
+#the-list .wrapper-gallery-plus span{
+    margin-top: 10px;
+}
+/* End Styling for icon plus gallery */
+/* Styling for icon featured */
+#the-list span.wc-featured {
+    color: #0073AA;
+}
+/* End Styling for icon featured */
+#the-list .background-validate-sale-price, #the-list .cell-alert-color {
+    background: #FF7600!important;
+    color: #794B4B;
+}
+
+#the-list .cell-edit-inline{
+    cursor: pointer;
+}
+
+#the-list .row-edit-content td:hover{
+    background-color: transparent !important;
+}
+
+#the-list td:hover {
+    background-color: #f2f2f2;
+}
+/* Styling for edit excerpt and content area*/
+#the-list tr.row-edit-excerpt div.wp-media-buttons, tr.row-edit-content div.wp-media-buttons {
+    float: none;
+}
+#the-list tr.row-edit-excerpt div.wp-editor-tabs, tr.row-edit-content div.wp-editor-tabs {
+    float: left;
+}
+/* End styling for edit excerpt and content area*/
+
+/* Styling for button show/hide content*/
+/*.button-show:after {*/
+    /*content: "\25bc";*/
+    /*margin-left: 5px;*/
+    /*margin-right: 0;*/
+/*}*/
+/*.button-hide:after {*/
+    /*margin-left: 5px;*/
+    /*margin-right: 0;*/
+    /*content: "\25b2";*/
+/*}*/
+/* End styling for button show/hide content*/
+/* Styling for button accept content*/
+#the-list .button-edit-excerpt, #the-list .button-edit-content {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+/* End styling for button accept content*/
+/* Styling for just add products*/
+.adding-row-color {
+    background-color: #abff8a!important;
+}
+/* End styling for just add products*/
+.loading-progress {
+    width: 100%;
+    height: auto;
+    position: fixed;
+    top: 50%;
+    z-index: 9999999;
+    color: white;
+}
+/* Styling for button in popup modal */
+.btn-continue {
+    color: #fff!important;
+    background-color: #c9302c;
+    border-color: #ac2925;
+}
+.btn-buy-full-version {
+    color: #fff!important;
+    background-color: #337ab7;
+    border-color: #2e6da4;
+}
+/* End styling for button in popup modal */
+
+/* Styling for selection color area modal setting*/
+.wrapper-inner-color-picker input {
+    width: 60%!important;
+}
+.wrapper-inner-color-picker span.input-group-addon {
+    width: 40%;
+}
+/* End styling for selection color area modal setting*/
+
+/* Styling for message to center screen */
+#popup-message .modal-dialog {
+    z-index: 1050;
+    height: auto;
+    width: 45%;
+    position: absolute;
+    top: 25%;
+    left: 0;
+    right: 0;
+}
+/* End styling for message to center screen */
+/* Begin styling for popup editor to center screen */
+#popup-editor .modal-dialog, #popup-variations .modal-dialog, #popup-attributes .modal-dialog {
+    z-index: 99999;
+    height: 95%;
+    width: 95%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+#popup-editor .modal-dialog .modal-content, #popup-variations .modal-dialog .modal-content, #popup-attributes .modal-dialog .modal-content {
+    height: inherit;
+}
+/*===========================*/
+#popup-edit-product .modal-dialog {
+    z-index: 1050;
+    height: 95%;
+    width: 95%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+#popup-edit-product .modal-dialog .modal-content {
+    height: inherit;
+}
+/*===========================*/
+
+/* Begin css for button of popup */
+.button-cancel {
+    color: #fff!important;
+    background-color: #c9302c;
+    border-color: #ac2925;
+}
+.button-save {
+    color: #fff!important;
+    background-color: #337ab7;
+    border-color: #2e6da4;
+}
+/* End css for button of popup */
+.hide-scroll{
+    overflow: hidden !important;
+}
+
+/* End style for footer of popup */
+.popup-close-button.close {
+    margin-top: -30px!important;
+}
+#popup-editor .modal-header, #popup-variations .modal-header, #popup-attributes .modal-header {
+    padding: 0 15px;
+    height: 30px;
+}
+#popup-editor .modal-body {
+    padding : 0;
+}
+#popup-variations .modal-body, #popup-attributes .modal-body {
+    padding: 5px;
+    overflow: auto;
+}
+/* Begin style for footer of popup */
+#popup-editor .modal-footer, #popup-variations .modal-footer, #popup-attributes .modal-footer {
+    height: 45px;
+    padding: 5px 15px;
+    text-align: right;
+    border-top: 1px solid #e5e5e5;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+}
+#popup-editor .modal-footer button.btn, #popup-variations .modal-footer button.btn, #popup-attributes .modal-footer button.btn {
+    min-width: 100px;
+    height: 100%;
+}
+#popup-editor .wp-editor-wrapper, #popup-variations .wp-editor-wrapper, #popup-attributes .wp-editor-wrapper {
+    height: 100%;
+    overflow-x: hidden;
+    padding: 5px;
+}
+#popup-editor .wp-editor-tabs, #popup-variations .wp-editor-tabs, #popup-attributes .wp-editor-tabs {
+    margin-top: 5px;
+}
+/*========================================*/
+#popup-edit-product .modal-header {
+    padding: 0 15px;
+    height: 33px;
+    position: relative;
+    z-index: 9999999;
+    background: #fff;
+}
+#popup-edit-product .modal-body {
+    height: 500px;
+    padding: 0;
+    top: -33px;
+}
+/* Begin style for footer of popup */
+#popup-edit-product .modal-footer {
+    height: 45px;
+    padding: 5px 15px;
+    text-align: right;
+    border-top: 1px solid #e5e5e5;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+}
+#popup-edit-product .modal-footer button.btn {
+    min-width: 100px;
+    height: 100%;
+}
+#popup-edit-product .wp-editor-wrapper {
+    height: 100%;
+    overflow-y: hidden;
+    /*padding: 5px;*/
+}
+.disabled-element {
+    pointer-events: none;
+    opacity: 0.6;
+}
+/* End styling for popup editor to center screen */
+.cell-uneditable {
+
+}
+
+.bootstrap-wrapper#popup-message .modal {
+    z-index: 99999;
+}
+.bootstrap-wrapper#popup-editor .modal, #popup-variations .modal, #popup-attributes .modal {
+    display: block;
+    z-index: 99999;
+    padding-right: 0;
+}
+/*===============================*/
+.bootstrap-wrapper#popup-edit-product .modal {
+    display: block;
+    padding-right: 0;
+    z-index: 99999;
+}
+/*=======================================*/
+.product_page_quick-edit-product-pro-submenu-page .ac_results {
+    z-index: 170000;
+}
+
+/* Start add stylesheet for table cell to make div fill in its table cell*/
+#the-list td.column-sku,
+#the-list td.column-product_cat,
+#the-list td.column-product_tag,
+#the-list td.column-stock,
+#the-list td.column-stock_status,
+#the-list td.column-regular_price,
+#the-list td.column-sale_price,
+#the-list td.column-weight,
+#the-list td.column-length,
+#the-list td.column-width,
+#the-list td.column-height,
+#the-list td.column-status,
+#the-list td.column-back_orders {
+    width: 150px;
+    height: 70px;
+    padding: 1px;
+}
+/* Set the content and wrap element of cell product tag */
+#the-list td.column-product_tag, #the-list td textarea.product-tags, #the-list td.column-product_tag span {
+    min-width: 150px;
+    max-width: 150px;
+}
+#the-list td div.cell-edit-inline {
+    width: 100%;
+    height: 100%;
+    display: table;
+    text-align: center;
+    /*input hidden center*/
+    position: relative;
+}
+
+#the-list td div.cell-edit-inline span {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: left;
+    padding-left: 5px;
+    padding-right: 5px;
+    max-width: 200px;
+}
+#the-list td div.cell-edit-inline span.input-number {
+    text-align: right;
+    padding-right: 5px;
+}
+
+#the-list td div.cell-edit-inline input.input-text-editable {
+    /*height: 100%;*/
+    width: 100%;
+    vertical-align: middle !important;
+    /*text-align: left;*/
+    padding: 0;
+}
+
+#the-list td div.cell-edit-inline .input-text-editable.input-center{
+    position: absolute;
+    width: 90%;
+    margin: 0 5px;
+    top: 50%;
+    left: 0;
+    margin-top: -10px;
+    /*text-align: center !important;*/
+}
+
+#the-list td div.cell-edit-inline input.validate-price{
+    text-align: right ;
+}
+
+#the-list td div.cell-edit-inline.column-product-name {
+    /*width: auto;*/
+    /*height: auto;*/
+    display: inline-block;
+    vertical-align: middle;
+    text-align: left;
+}
+
+#the-list td div.cell-edit-inline.column-product-name span {
+    display: inline;
+    vertical-align: middle;
+    padding-left: 0;
+}
+
+#the-list td div.product_cat{
+    position: relative;
+}
+
+#the-list td div.product_cat select.product_cat{
+    position: absolute;
+    top: 20px;
+    left: 30px;
+    z-index: 1600;
+}
+/* End add stylesheet for table cell to make div fill in its table cell*/
+body {
+    scrollbar-face-color: #000000;
+    scrollbar-highlight-color: #000000;
+    scrollbar-3dlight-color: #000000;
+    scrollbar-darkshadow-color: #000000;
+    scrollbar-shadow-color: #000000;
+    scrollbar-arrow-color: #FF99FF;
+    scrollbar-track-color: #FFCCFF;
+}
+/* Fix layout issue in safari */
+/*@media only screen and (-webkit-min-device-pixel-ratio: 1) {*/
+    /*::i-block-chrome, .wrapper-wp-list-table {*/
+        /*margin-top: 10px;*/
+    /*}*/
+/*}*/
+/* End fix layout issue in safari */
+
+/* Begin style for screen edit/add product of iframe in popup*/
+#fnt-iframe {
+    border: solid 1px #f1f1f1;
+}
+/* End style for screen edit/add product of iframe in popup*/
+#popup-edit-product .wrap-center {
+    width: inherit;
+    height: inherit;
+    position: relative;
+}
+#popup-edit-product .wrap-center .center {
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto auto;
+    top: 0;
+    bottom: 0;
+    text-align: center;
+}
+#popup-edit-product .wrap-center .center img {
+    /*width: 330px;*/
+    /*height: 400px;*/
+}
+/*============hidden scroll bar==============*/
+.hidden-scroll-bar {
+    overflow: hidden;
+}
+.modifying-button {
+    background-color: darkorange;
+}
+/* Hidden important */
+.hidden-important {
+    display: none!important;
+}
+
+/*
+ ***********SINCE Quick edit product version 1.1**********
+ * CSS for variations area
+ * Add features for edit variable with variations products
+ */
+/*wrapper-wp-list-variation-table*/
+table.wp-list-variation-table td, table.wp-list-variation-table th {
+    vertical-align: middle;
+}
+/*Set height for table header*/
+table.wp-list-variation-table thead tr {
+    height: 40px;
+}
+
+/* Make check box of row is straight */
+table.wp-list-variation-table input.cb-select-all-variations {
+    margin: 0;
+}
+/* Style for button of product type variable */
+.button-variable {
+    margin: 3px!important;
+}
+
+/* Style for variable attributes table */
+.attribute-actions {
+    cursor: pointer;
+}
+/* Make the input box is not have border */
+.attribute-input {
+    border: none!important;
+    background: transparent!important;
+    box-shadow: none!important;
+}
+.attribute-name-taxonomy {
+    margin: 1px;
+    padding: 3px 5px;
+}
+/* Change cursor to icon move */
+table.wp-list-attributes-table td.column-position {
+    cursor: move;
+    z-index: 999999;
+    position: relative;
+}
+table.wp-list-attributes-table td.column-position span.attribute-position{
+    position: relative;
+    z-index: -1;
+}
+
+/*Set color for row is sorting*/
+.sorting-row {
+    background-color: #bbecff !important;
+}
+/* Remove color hover of table td */
+table.wp-list-attributes-table td:hover {
+    background-color: transparent!important;
+}
+/* Fill color transparent */
+.transparent {
+    background-color: transparent!important;
+}
+/* Style for attribute item of default attributes */
+.wrapper-attribute-item {
+    background-color: #e4e4e4;
+    padding: 5px 5px 5px 5px;
+    margin: 3px 5px 3px 1px;
+    border-radius: 2px;
+    cursor: default;
+    float: left;
+}
+.remove-attribute-item {
+    top: 3px!important;
+    cursor: pointer;
+}
+.remove-attribute-item:hover {
+    color: white;
+}
+
+.attribute-select-item, .attribute-area, .attribute-value-input, .attribute-name {
+    width: 100%;
+}
+.attribute-area {
+    resize: vertical;
+}
+/*Padding for table cell of attributes area in popup*/
+.attribute-row td  {
+    padding: 5px!important;
+}
+/*Make table variations larger in popup*/
+.wrapper-wp-list-variation-table {
+    overflow: auto;
+    clear: both;
+}
+.wrapper-wp-list-attributes-table {
+    overflow: auto;
+    clear: both;
+}
+/* Set width for variations table cell */
+table.wp-list-variation-table {
+    width: inherit;
+}
+
+table.wp-list-variation-table .column-thumb-variation {
+    width: 42px;
+}
+
+table.wp-list-variation-table .column-id-variation div.wrap-input-text {
+    text-align: center;
+}
+table.wp-list-variation-table .column-id-variation {
+    min-width: 50px;
+}
+
+table.wp-list-variation-table .column-product_id {
+    width: 25px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+/* Fit content div of table cell to full width and height */
+.the-list-variations td.column-sku-variation,
+.the-list-variations td.column-stock-variation,
+.the-list-variations td.column-back_orders-variation,
+.the-list-variations td.column-stock_status-variation,
+.the-list-variations td.column-regular_price-variation,
+.the-list-variations td.column-sale_price-variation,
+.the-list-variations td.column-weight-variation,
+.the-list-variations td.column-length-variation,
+.the-list-variations td.column-width-variation,
+.the-list-variations td.column-height-variation {
+    height: 70px;
+    padding: 1px;
+}
+table.wp-list-variation-table .column-product_attributes-variation span {
+    max-width: none!important;
+}
+table.wp-list-variation-table .column-stock_status-variation,
+table.wp-list-variation-table .column-stock-variation {
+    min-width: 100px;
+}
+.the-list-variations .column-manage_stock-variation div.wrap-input-text {
+    text-align: center;
+}
+table.wp-list-variation-table .column-back_orders-variation,
+table.wp-list-variation-table .column-sku-variation,
+table.wp-list-variation-table .column-regular_price-variation,
+table.wp-list-variation-table .column-sale_price-variation,
+table.wp-list-variation-table .column-weight-variation,
+table.wp-list-variation-table .column-length-variation,
+table.wp-list-variation-table .column-width-variation,
+table.wp-list-variation-table .column-height-variation {
+    min-width: 150px;
+}
+/* Make text in table header align center */
+table.wp-list-variation-table thead tr th {
+    text-align: center;
+}
+/* Style for message when don't show any items */
+table.wp-list-variation-table tbody tr.no-items {
+    height: 50px;
+}
+table.wp-list-variation-table tbody tr.no-items td {
+    padding-left: 10px;
+}
+/*------------Style for attributes area---------*/
+table.wp-list-attributes-table thead tr th {
+    height: 40px;
+    padding: 5px;
+}
+table.wp-list-attributes-table .column-position {
+    width: 100px;
+}
+table.wp-list-attributes-table .column-is_variation {
+    width: 130px;
+}
+table.wp-list-attributes-table .column-action {
+    width: 80px;
+}
+/* Style for button add new attribute term in popup attributes */
+button.button-add-attribute-term {
+    margin: 5px 0 3px 0!important;
+}
+
+/* Style for area select default attribute in popup variation */
+.variations-default-attributes {
+    margin-top: 4px;
+}
+.variations-default-attributes .default-attribute {
+    margin-left: 4px;
+}
+/* Uppercase first letter of Product type selection */
+.product_type, .product_type option, .change_product_type, .change_product_type option {
+    text-transform: capitalize!important;
+}
+.fnt-button-add-attribute {
+    margin-left: 3px;
+    margin-top: -1px;
+}
+/* Since ver 1.0.3 */
+/* Set witdh for Day Dropdown */
+#filter-by-date {
+    width: 85px;
+}
+#change-product-type {
+    margin-top: 1px;
+    margin-left: -4px;
+}
+.filter-form select {
+    margin-left: -4px;
+}
+.filter-form .button {
+    margin-left: -4px!important;
+}
+div.action-button {
+    margin-right: 4px;
+}
+span.product-type, span.product-type-name {
+    float: left;
+}
+span.product-type-name {
+    margin-left: 7px;
+}
+/* Style for dropdown product categories */
+.children {
+    margin-left: 18px;
+}
+/*=================================*/
+.popup-select-product-type-wrapper .modal-dialog {
+    z-index: 99999;
+    height: 300px;
+    width: 250px!important;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+}
+.popup-select-product-type-wrapper .modal-content {
+    height: inherit;
+    position: fixed!important;
+}
+.popup-select-product-type-wrapper .modal {
+    display: block!important;
+    z-index: 99999!important;
+    padding-right: 0;
+}
+.popup-select-product-type-wrapper .modal-backdrop {
+    opacity: 0.5;
+    background-color: transparent!important;
+}
+
+.popup-select-product-type-wrapper .modal-header {
+    padding: 0 15px!important;
+    height: 36px;
+}
+.popup-select-product-type-wrapper .modal-header input.cat-search {
+    width: 120px;
+    margin-top: 4px;
+}
+.popup-select-product-type-wrapper .modal-header button.button-select-cat {
+    margin-top: 3px;
+}
+.popup-select-product-type-wrapper .modal-body {
+    padding: 5px;
+    overflow: auto;
+    height: calc(100% - 72px);
+}
+/* Begin style for footer of popup */
+.popup-select-product-type-wrapper .modal-footer {
+    height: 36px;
+    padding: 3px 15px 3px 15px!important;
+    text-align: right;
+    border-top: 1px solid #e5e5e5;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+}
+
+.popup-select-product-type-wrapper .arrow-left {
+    width: 10px;
+    height: 20px;
+    position: absolute;
+    top: 50%;
+    margin-left: -10px;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-right: 10px solid white;
+}
+.popup-select-product-type-wrapper .arrow-right {
+    width: 10px;
+    height: 20px;
+    position: absolute;
+    top: 50%;
+    left: 100%;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-left: 10px solid white;
+}
+/* Make space for block actions */
+.actions.product-type-change {
+    border-right: 1px solid #cccccc;
+    padding-right: 10px;
+}
+.actions.action-button {
+    border-right: 1px solid #cccccc;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.actions.filter-form {
+    padding-left: 10px;
+}
+
+td.column-product_cat {
+    cursor: pointer;
+}

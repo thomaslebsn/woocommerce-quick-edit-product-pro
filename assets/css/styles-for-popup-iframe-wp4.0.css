@@ -1,0 +1,31 @@
+/*=========Hide menu bar of admin page in popup============*/
+#adminmenumain {
+    display: none!important;
+}
+#wpcontent {
+    margin-left: 0!important;
+}
+/*=========Hide update status============*/
+#wpbody-content .update-nag {
+    display:none;
+}
+/*hide button Publish/Update, Preview/Preview changes, Copy to a new draft/Move to trash in iframe, button Save Draft*/
+#publish, #major-publishing-actions,
+#save-post, #minor-publishing-actions, #wpfooter {
+    display: none;
+}
+/*===================Fix layout in popup on wordpress 4.0 and woocommerce 2.4==================*/
+#adminmenuback, #adminmenuwrap, #wp-fullscreen-save {
+    display: none!important;
+}
+#wpbody-content .wrap > h2 {
+    visibility: hidden;
+}
+/* Style for mode view fullscreen of editor of content */
+#wp-content-wrap.wp-fullscreen-wrap {
+    padding: 32px 0px 0px 0px!important;
+}
+#fullscreen-topbar {
+    top: 32px;
+}
+/* End style for mode view fullscreen of editor of content */

@@ -1,0 +1,4 @@
+/* Fix layout for category select in table */
+.widefat th, .widefat td {
+    overflow: visible;
+}

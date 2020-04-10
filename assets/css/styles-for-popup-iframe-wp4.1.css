@@ -1,0 +1,20 @@
+/*=========Hide menu bar of admin page in popup============*/
+#adminmenumain, #adminmenuback, #adminmenuwrap {
+    display: none!important;
+}
+#wpcontent {
+    margin-left: 0!important;
+}
+/*=========Hide update status============*/
+#wpbody-content .update-nag {
+    display:none;
+}
+/*hide button Publish/Update, Preview/Preview changes, Copy to a new draft/Move to trash in iframe, button Save Draft*/
+#publish, #major-publishing-actions,
+#save-post, #minor-publishing-actions, #wpfooter {
+    display: none;
+}
+
+#wpbody-content .wrap > h2 {
+    visibility: hidden;
+}

@@ -1,0 +1,8 @@
+/* Fix css layouts in wordpress 4.0 and woocommerce 2.4.0 */
+.wp-switch-editor {
+    height: 26px!important;
+}
+/* Fix layout for category select in table */
+.widefat th, .widefat td {
+    overflow: visible;
+}

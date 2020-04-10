@@ -1,0 +1,49 @@
+*** WooCommerce Quick Edit Products Pro Changelog ***
+
+2018.09.15 - version 1.2.0
+    - Upgrade plugin to be compatible with Woocommerce 3.4.x and Wordpress 4.9.x and later ones
+
+2017.12.01 - version 1.1.0
+    - Upgrade plugin to be compatible with Woocommerce 3.x and Wordpress latest version
+    - Add setting "Choose product status" for adding new product in Setting Modal
+    - Hide Publish block in adding new product modal to prevent confusion. Currently, the Publish block does NOT be supported in Quick Edit Plugin.
+    - Issue of action click on category header column
+    - Keep previous product status on untrash products
+    - Correct the currency position on rendering the prices in the product list with the formatted currency which is configured in WooCommerce setting
+
+2016.11.19 - version 1.0.9
+	- Fix error when import product price
+
+2016.09.10 - version 1.0.8
+	- Fix issue when install on Wordpress with multisite
+	- Fix issue category filter only is "Uncategorized" when don't have published product.
+
+2016.07.25 - version 1.0.7
+	- Fix issue compatibility with currency switcher.
+	- Fix variations price is not update in frontend.
+	- Add new features: Quick Add/Edit attributes for product simple.
+
+2016.06.23 - version 1.0.6
+	- Fix issue can't search category in Categories box When edit inline.
+	- Fix error when import product with Woocommerce version >= 2.6.0
+
+2016.05.18 - version 1.0.5
+	- Fix issue: When click full "Edit" and add attributes to a variable product, then click “save”, the plugin shows “saving” and never does anything else. 
+	- Fix issue: Don't show "Free!" when not set price (set "blank" for R.price and S.price field)
+
+2016.03.30 - version 1.0.4
+	- Quick change the “Product Type” from “Simple Product” to “Variable Product” in bulk
+	- Improve the function quick edit category
+	
+2016.03.12 - version 1.0.3
+	- Add new features: Quick Add/Edit attributes and variations of variable product.
+
+2016.02.18 - version 1.0.2
+	- Remove features "Auto changes products to OUT OF STOCK when the Stock Qty <= 0".
+	- Fix issue SALE PRICES don't appear on the front end.
+	- Fix issue show "Price Free" when update products from Excel file.
+	- Fix issue can't import products by excel file from google spreadsheets.
+
+2016.01.22 - version 1.0.0
+    - First Release
+
