@@ -492,7 +492,7 @@
                             <div>", __('OK', 'fnt'));
                     break;
                 case 'dropdown-list':
-                    $str_input = "<select name='products[{$args['product_id']}][$column_name_in_db]' id='$column_name' class='$column_name input-text-editable hidden input-center'>";
+                    $str_input = "<select name='products[{$args['product_id']}][$column_name_in_db]' class='$column_name input-text-editable hidden input-center'>";
                     foreach ( Fnt_ProductListCons::$column_mapping[ $column_name ] as $key => $value ) {
                         $str_input .= "<option value='$key'>$value</option>";
                     }

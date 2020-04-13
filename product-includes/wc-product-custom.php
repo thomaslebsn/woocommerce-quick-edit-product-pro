@@ -646,16 +646,6 @@ class WC_Product_Custom extends WC_Product {
         } else {
             $type_name = "";
         }
-        if ( $type == 'variable' ) {
-            $product_id   = $this->id;
-            $product_type = $this->get_type();
-            $column_value = '<button type="button" class="button button-variable button-primary button-show-attributes" product-id="'.$product_id.'" product-type="'.$product_type.'">'. __( 'Edit attributes', 'fnt') . '</button>';
-            $column_value .= '<button type="button" class="button button-variable button-primary button-show-variation" product-id="'.$product_id.'" product-type="'.$product_type.'">'. __( 'Edit variations', 'fnt') . '</button>';
-        } else if ( $type == 'simple' ) {
-            $product_id   = $this->id;
-            $product_type = $this->get_type();
-            $column_value = '<button type="button" class="button button-variable button-primary button-show-attributes" product-id="'.$product_id.'" product-type="'.$product_type.'">'. __( 'Edit attributes', 'fnt') . '</button>';
-        }
         $column_value .= "<div class='display-center'>" .
                              "<span class='product-type tips $type' title='$type_name'></span>" .
                              "<span class='product-type-name'>$type_name</span>" .
@@ -1051,6 +1041,7 @@ class WC_Product_Custom extends WC_Product {
             case 'download_type' :
                 return 'standard';
                 break;
+            case Fnt_ProductListCons::COLUMN_GALLERY:
             case 'product_image_gallery' :
                 $value = $this->get_gallery_image_ids();
                 break;
@@ -1097,9 +1088,6 @@ class WC_Product_Custom extends WC_Product {
             case 'variation_has_tax_class' :
             case 'variation_has_downloadable_files' :
                 $value = true; // These were deprecated in 2.2 and simply returned true in 2.6.x.
-                break;
-            case Fnt_ProductListCons::COLUMN_GALLERY:
-                $value = $this->get_gallery_image_ids();
                 break;
             default :
                 if ( in_array( $key, array_keys( $this->data ) ) ) {
