@@ -1,8 +1,8 @@
 <?php
 /**
- * Plugin Name: Woo Bulk Edit Products Premium
- * Plugin URI: []
- * Description: This plugin help us to interact easily with products on actions, such as add/edit/delete multiple products.
+ * Plugin Name: WooCommerce Bulk Edit Products Premium
+ * Plugin URI: http://codecanyon.net/item/woocommerce-bulk-edit-products-premium
+ * Description: This plugin help us to interact as easy as with the products by the following actions, such as add, edit, delete multiple products and much more.
  * Version: 1.0.0
  * Author: ThomasLe
  * Author URI: http://thomaslebsn.info
@@ -137,7 +137,7 @@ if ( function_exists( 'is_multisite' ) && is_multisite() ) {
     }
 }
 
-$is_fnt_edit_page = isset( $_GET['page'] ) && $_GET['page'] == 'quick-edit-product-pro-submenu-page';
+$is_fnt_edit_page = isset( $_GET['page'] ) && $_GET['page'] == 'bulk-edit-products-premium-submenu-page';
 $is_fnt_ajax_get_call = isset( $_GET['action'] ) && $_GET['action'] == 'fnt_product_manage';
 $is_fnt_ajax_post_call = isset( $_POST['action'] ) && $_POST['action'] == 'fnt_product_manage';
 if ( ( $is_fnt_edit_page || $is_fnt_ajax_get_call || $is_fnt_ajax_post_call ) && class_exists( 'Fnt_QEPP' ) ) {

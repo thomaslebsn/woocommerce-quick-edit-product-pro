@@ -102,11 +102,11 @@ class Fnt_QEPP{
     }
     public function register_quick_edit_product_pro_submenu_page() {
             $this->page_hook_name = add_submenu_page( 'edit.php?post_type=product',
-                'Quick Edit Pro',
-                'Quick Edit Product Pro',
+                'Bulk Edit Products Premium',
+                'Bulk Edit Product Premium',
                 'manage_product_terms',
-                'quick-edit-product-pro-submenu-page',
-                array($this,'quick_edit_product_pro_submenu_page_callback')
+                'bulk-edit-products-premium-submenu-page',
+                array($this,'bulk_edit_products_premium_submenu_page_callback')
             );
             if(class_exists('Fnt_ProductListManagement') && !empty($this->product_list_management_class)){
                 $this->product_list_management_class->set_page_hook_name($this->page_hook_name);
@@ -114,7 +114,7 @@ class Fnt_QEPP{
             }
     }
 
-    public function quick_edit_product_pro_submenu_page_callback() {
+    public function bulk_edit_products_premium_submenu_page_callback() {
         $action = (isset($_GET['fnt_action']) && !empty($_GET['fnt_action'])) ? $_GET['fnt_action'] : "";
         if(empty($action) && isset($_POST['product-form-submit'])) {
             $action = "submit-form";
@@ -137,7 +137,7 @@ class Fnt_QEPP{
                 if(isset($_GET['page']) && !empty($_GET['page'])){
                     $page = $_GET['page'];
                 } else {
-                    $page = "quick-edit-product-pro-submenu-page";
+                    $page = "bulk-edit-products-premium-submenu-page";
                 }
 
                 if(isset($_GET['post_status']) && !empty($_GET['post_status'])){

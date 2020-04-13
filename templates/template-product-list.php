@@ -14,7 +14,7 @@ $qs_post_type = !empty($template_args['qs_post_type']) ? $template_args['qs_post
 <div class="wrap">
     <h2>
         <?php
-        $title = "Woo Bulk Edit Products Premium";
+        $title = "WooCommerce Bulk Edit Products Premium";
         echo $title;
         ?>
     </h2>
@@ -77,7 +77,7 @@ $qs_post_type = !empty($template_args['qs_post_type']) ? $template_args['qs_post
         </div>
     <?php endif; ?>
 
-    <form id="posts-filter" method="get" action="?post_type=product&page=quick-edit-product-pro-submenu-page">
+    <form id="posts-filter" method="get" action="?post_type=product&page=bulk-edit-products-premium-submenu-page">
         <input type="hidden" name="post_type" value="<?php echo $qs_post_type; ?>"/>
         <input type="hidden" name="page" value="<?php echo $qs_page; ?>"/>
         <input type="hidden" name="post_status" value="<?php echo $post_status; ?>"/>
