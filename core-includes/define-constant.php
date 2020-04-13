@@ -8,11 +8,6 @@
     if ( ! defined( 'OPTION_NONE_VALUE' ) ) {
         define( "OPTION_NONE_VALUE", -1 );
     }
-    if ( ! defined( 'FNT_IS_IMPORTING_META_KEY' ) ) {
-        define( "FNT_IS_IMPORTING_META_KEY", "fnt_is_importing" );
-    }
-
-
 
     //Class full name: Fnt_ProductListConstantDefinition
     class Fnt_ProductListCons {
@@ -559,19 +554,11 @@
                 'message_product_name_not_empty' => __( 'Product name is not empty.', 'fnt' ),
                 'message_save_product_failed' => __( 'Save failed, please try again!', 'fnt' ),
                 'message_SKU_exists' => __( 'SKU already exists.', 'fnt' ),
-                'import_product_invalid_file_type' => __( 'Invalid file type. Only accept file with extension .xls or .xlsx !', 'fnt' ),
-                'import_product_empty_input_file' => __( 'Import file is required! Please choose your file before importing.', 'fnt' ),
                 'delete_product_failed' => __( 'Delete failed, please try again !', 'fnt' ),
                 'move_to_trash_product_failed' => __( 'Move to trash failed, please try again!', 'fnt' ),
                 'change_product_type_failed' => __( 'Change product type failed, please try again!', 'fnt' ),
                 'please_select_product_type_to_change' => __( 'Please select a product type to change to!', 'fnt' ),
                 'restore_product_failed' => __( 'Restore failed, please try again!', 'fnt' ),
-                'excel_template_setting_successfully' => __( 'Your template is generated successfully!', 'fnt' ),
-                'excel_template_setting_some_error' => __( 'Have some errors, please try creating again!', 'fnt' ),
-                'export_product_error_selected_columns' => __( 'You must choose at least 3 columns for create template!', 'fnt' ),
-                'export_product_have_some_error' => __( 'Have some errors. Please fix them before continuing your process.', 'fnt' ),
-                'export_product_successfully' => __( 'Exported successfully!!!', 'fnt' ),
-                'export_product_process_have_some_error' => __( 'Have some errors in export processing, please try again!', 'fnt' ),
                 'form_setting_modifying_row_color' => __( 'This color use to show row of product(s) is modify by edit inline.', 'fnt' ),
                 'form_setting_adding_row_color' => __( 'This color use to show row of product(s) just add by button Add(s).', 'fnt' ),
                 'form_setting_set_product_status_on_creating' => __( 'Choose a status for creating a new product. By default status is "Pending".', 'fnt' ),
@@ -585,7 +572,6 @@
                 'confirm_redirect_page' => __( 'The changes you made will be lost if you navigate away from this page.', 'fnt' ),
                 'no_change_detected' => __( 'No change detected!', 'fnt' ),
                 'no_items_selected' => __( 'No items selected!', 'fnt' ),
-                'no_data_to_export' => __( 'Don\'t have data to export!', 'fnt' ),
                 'add_attributes_failed' => __( 'Add attributes failed', 'fnt' ),
                 'message_add_new_attribute_term' => __('Enter a name for the new attribute term:', 'fnt'),
                 'caution_message_attribute_term_name_empty' => __('Attribute term name is empty. So can\'t add new attribute item.', 'fnt'),

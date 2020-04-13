@@ -38,12 +38,7 @@
             global $wpdb;
             // get args in url
             self::$url_args = self::get_args_from_url();
-            // if current page show just import product, post_type will is 'temp'. Only with Woocommerce 2.6.x
             // post_type is force to "product" from woocommerce version 3.x
-            if ( self::is_just_import_product() ) {
-                // investigating
-                self::$url_args[ 'post_type' ] = 'product';
-            }
             // return a post type
             $have_post_type = isset( self::$url_args[ 'post_type' ] ) && ! empty( self::$url_args[ 'post_type' ] ) ;
             $product_type = $have_post_type ?  self::$url_args[ 'post_type' ] : 'product';
@@ -58,9 +53,6 @@
          */
         public static function get_current_term_id( $column_name ) {
             self::$url_args = self::get_args_from_url();
-            if ( self::is_just_import_product() ) {
-                self::$url_args[ 'post_type' ] = 'product'; // investigating
-            }
             $term_id = 0;
             // if value defined
             $column_defined = isset( Fnt_ProductListCons::$column_name_in_db[ $column_name ] ) && ! empty( Fnt_ProductListCons::$column_name_in_db[ $column_name ] );
@@ -85,10 +77,6 @@
          * @return array params|null if don't have params
          */
         private static function get_args_from_url( $current_url = '' ) {
-            global $export_url;
-            if ( isset( $export_url ) && ! empty( $export_url ) ) {
-                $current_url = $export_url;
-            }
             if ( empty( $current_url ) ) {
                 if ( isset( $_SERVER[ 'REQUEST_URI' ] ) ) {
                     $current_url = $_SERVER[ 'REQUEST_URI' ];
@@ -348,20 +336,6 @@
                              FROM   {$wpdb->posts} post
                              WHERE  post.post_type = '%s' %s",
                              $post_type, $where );
-
-            if ( self::is_just_import_product() ) {
-
-                // investigating
-//                "SELECT COUNT(DISTINCT ID) AS num_temp
-//                                FROM $wpdb->posts main INNER JOIN $wpdb->postmeta pm on main.ID = pm.post_id
-//                                WHERE post_type = 'product' AND pm.meta_key = '".FNT_IS_IMPORTING_META_KEY."' AND pm.meta_value = '1'"
-                $sql = sprintf( "SELECT COUNT(DISTINCT post.ID)
-                                 FROM   {$wpdb->posts} post INNER JOIN $wpdb->postmeta pm on post.ID = pm.post_id  
-                                 WHERE post.post_type = 'product' AND pm.meta_key = '".FNT_IS_IMPORTING_META_KEY."' AND pm.meta_value = '1' 
-                                 %s ", $where );
-
-            }
-
             return $sql;
         }
 
@@ -375,8 +349,7 @@
          */
         public static function prepare_query( $query_type = 'count_item', $url = '', $per_page = LOADED_PRODUCTS_PER_PAGE, $page_number = 1 ) {
             global $wpdb;
-            global $export_url;
-            $export_url = $url;
+
             self::$url_args = self::get_args_from_url( $url );
 
             $order_by = isset( self::$url_args[ 'orderby' ] ) && ! empty( self::$url_args[ 'orderby' ] ) ? self::$url_args[ 'orderby' ] : 'ID';
@@ -420,14 +393,6 @@
             }
 
             // force post_type as "product" to fix for woocommerce 3.x
-            // move processing import at here to avoid twice joining into postmeta table
-            if ( self::is_just_import_product() ) {
-
-                self::$url_args[ 'post_type' ] = 'product';
-                // custom from and where for processing of importing products in here
-                self::$sql_args[ 'from' ]  .= " INNER JOIN {$wpdb->postmeta} pm1 ON {$wpdb->posts}.ID = pm1.post_id AND pm1.`meta_key` = '".FNT_IS_IMPORTING_META_KEY."' AND pm1.`meta_value` = 1 ";
-            }
-
             switch ( $query_type ) {
                 case 'count_item':
                     $sql = self::get_sql_when_count_item();
@@ -449,21 +414,6 @@
             );
 
             return $sql;
-        }
-
-
-
-
-        /**
-         * Check if in view list product temp
-         * @return bool
-         */
-        public static function is_just_import_product() {
-            if ( isset( $_GET[ 'just-import-product' ] ) && ! empty( $_GET[ 'just-import-product' ] ) ) {
-                return true;
-            }
-
-            return false;
         }
 
         /*

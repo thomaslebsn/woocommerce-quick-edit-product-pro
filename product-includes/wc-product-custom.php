@@ -647,20 +647,14 @@ class WC_Product_Custom extends WC_Product {
             $type_name = "";
         }
         if ( $type == 'variable' ) {
-            // If product not in just import screen or in screen import and product not yet exists in database
-            if ( ! Fnt_Url_Handler::is_just_import_product() || ( Fnt_Url_Handler::is_just_import_product() && $this->id == $this->get_product_id() ) ) {
-                $product_id   = $this->id;
-                $product_type = $this->get_type();
-                $column_value = '<button type="button" class="button button-variable button-primary button-show-attributes" product-id="'.$product_id.'" product-type="'.$product_type.'">'. __( 'Edit attributes', 'fnt') . '</button>';
-                $column_value .= '<button type="button" class="button button-variable button-primary button-show-variation" product-id="'.$product_id.'" product-type="'.$product_type.'">'. __( 'Edit variations', 'fnt') . '</button>';
-            }
+            $product_id   = $this->id;
+            $product_type = $this->get_type();
+            $column_value = '<button type="button" class="button button-variable button-primary button-show-attributes" product-id="'.$product_id.'" product-type="'.$product_type.'">'. __( 'Edit attributes', 'fnt') . '</button>';
+            $column_value .= '<button type="button" class="button button-variable button-primary button-show-variation" product-id="'.$product_id.'" product-type="'.$product_type.'">'. __( 'Edit variations', 'fnt') . '</button>';
         } else if ( $type == 'simple' ) {
-            // If product not in just import screen or in screen import and product not yet exists in database
-            if ( ! Fnt_Url_Handler::is_just_import_product() || ( Fnt_Url_Handler::is_just_import_product() && $this->id == $this->get_product_id() ) ) {
-                $product_id   = $this->id;
-                $product_type = $this->get_type();
-                $column_value = '<button type="button" class="button button-variable button-primary button-show-attributes" product-id="'.$product_id.'" product-type="'.$product_type.'">'. __( 'Edit attributes', 'fnt') . '</button>';
-            }
+            $product_id   = $this->id;
+            $product_type = $this->get_type();
+            $column_value = '<button type="button" class="button button-variable button-primary button-show-attributes" product-id="'.$product_id.'" product-type="'.$product_type.'">'. __( 'Edit attributes', 'fnt') . '</button>';
         }
         $column_value .= "<div class='display-center'>" .
                              "<span class='product-type tips $type' title='$type_name'></span>" .

@@ -233,8 +233,8 @@
                 return '';
             }
             // add link action for each product
-            // action link doesn't display for product in trash and just import product
-            if ( Fnt_Url_Handler::is_in_trash_filter() || Fnt_Url_Handler::is_just_import_product() ) {
+            // action link doesn't display for product in trash
+            if ( Fnt_Url_Handler::is_in_trash_filter() ) {
                 $actions = array();
             } else {
                 // get link to view this product
@@ -392,7 +392,7 @@
                             }
                             break;
                         case Fnt_ProductListCons::COLUMN_NAME:
-                            if ( ! Fnt_Url_Handler::is_in_trash_filter() && ! Fnt_Url_Handler::is_just_import_product() ) {
+                            if ( ! Fnt_Url_Handler::is_in_trash_filter() ) {
                                 $div_classes .= ' column-product-name ';
                             }
                             break;
@@ -463,7 +463,7 @@
                 case 'input':
                     $input_center = ' input-center';
                     if ( $column_name == Fnt_ProductListCons::COLUMN_NAME ) {
-                        if ( Fnt_Url_Handler::is_in_trash_filter() || Fnt_Url_Handler::is_just_import_product() ) {
+                        if ( Fnt_Url_Handler::is_in_trash_filter() ) {
                             $input_center = 'input-center';
                         } else {
                             $input_center = '';
@@ -562,19 +562,6 @@
                         }
                     }
                 }
-
-                /**
-                 * Since ver 1.0.3
-                 * Move justimport link to views
-                 */
-                $class = $current == 'justimport' ? ' class="current"' : '';
-                $just_import_url = Fnt_QEPP::get_redirect_page_url( array( 'just-import-product' => 1 ) );
-                $item_count = WC_Product_Temp_Custom::count_product_temp();
-                $views[ 'justimport' ] = sprintf( "<a href='$just_import_url' $class>%s  <span class='count'>($item_count)</span></a>", __( 'Just import', 'fnt' ) );
-                // End since ver 1.0.3
-                // @since ver 1.0.6
-//                $edit_attributes_link = Fnt_QEPP::get_redirect_page_url( array( 'edit-attributes' => 1 ) );
-//                $views[ 'editattributes' ] = sprintf( "<a href='$edit_attributes_link' $class>%s</a>", __( 'Edit attributes', 'fnt' ) );
             }
 
             return $views;
@@ -589,9 +576,6 @@
         public function display_tablenav( $which ) {
             if ( 'top' == $which ) {
                 wp_nonce_field( 'bulk-' . $this->_args[ 'plural' ] );
-            }
-            if ( ! Fnt_Url_Handler::is_just_import_product() ) {
-                $this->views();
             }
             ?>
             <div class="tablenav <?php echo esc_attr( $which ); ?>">
@@ -610,9 +594,6 @@
          */
         public function extra_tablenav( $which ) {
             if ( $which == 'top' ) {
-                if ( ! Fnt_Url_Handler::is_just_import_product() ) {
-                    $this->get_product_types();
-                }
                 $this->get_product_cta();
                 $this->get_filter_form();
             }
@@ -662,42 +643,21 @@
                 $button_had_disabled = '';
             }
             $style = '';
-            if ( Fnt_Url_Handler::is_just_import_product() ) {
-                $style = ' style="padding-left:0;"';
-            }
             ?>
             <div class="alignleft actions action-button" <?php echo $style;?>>
                 <button type="button" disabled="disabled" class="button <?php echo $button_classes . $button_had_disabled; ?>" id="button-delete-product" >
                     <?php echo __( 'Delete', 'fnt' ); ?>
                 </button>
                 <?php
-                    if ( ! Fnt_Url_Handler::is_just_import_product() ) {
-                        if ( Fnt_Url_Handler::is_in_trash_filter() ) { ?>
-                            <button type="button" disabled="disabled" class="button <?php echo $button_classes . $button_had_disabled; ?>"
-                                    id="button-restore-product"><?php echo __( 'Restore', 'fnt' ); ?>
-                            </button>
-                            <?php
-                        } else {
-                            ?>
-                            <button type="button" disabled="disabled" class="button <?php echo $button_classes . $button_had_disabled; ?>"
-                                    id="button-move-product-to-trash"><?php echo __( 'Trash', 'fnt' ); ?>
-                            </button>
-                            <?php
-                        }
-                        ?>
+                    if ( Fnt_Url_Handler::is_in_trash_filter() ) { ?>
+                        <button type="button" disabled="disabled" class="button <?php echo $button_classes . $button_had_disabled; ?>"
+                                id="button-restore-product"><?php echo __( 'Restore', 'fnt' ); ?>
+                        </button>
                         <?php
                     } else {
                         ?>
-                        <button type="button" disabled="disabled" class="button <?php echo $button_classes . $button_had_disabled; ?>" id="button-delete-all-temp-product"
-                                button-url="<?php echo Fnt_QEPP::get_redirect_page_url( array( 'fnt_action' => 'delete_temp_products' ) ); ?>">
-                            <?php echo __( 'Delete all temp', 'fnt' ); ?>
-                        </button>
-                        <button type="button" disabled="disabled" class="button <?php echo $button_classes; ?>" id="button-page-back"
-                                button-url="<?php echo Fnt_QEPP::get_redirect_page_url(); ?>"><?php echo __( 'Back', 'fnt' ); ?>
-                        </button>
-                        <button type="button" disabled="disabled" class="button <?php echo $button_classes; ?>" id="button-refresh-page"
-                                button-url="<?php echo Fnt_QEPP::get_redirect_page_url( array( 'just-import-product' => 1 ) ); ?>">
-                            <?php echo __( 'Reset', 'fnt' ); ?>
+                        <button type="button" disabled="disabled" class="button <?php echo $button_classes . $button_had_disabled; ?>"
+                                id="button-move-product-to-trash"><?php echo __( 'Trash', 'fnt' ); ?>
                         </button>
                         <?php
                     }
@@ -1264,7 +1224,6 @@
          * @param $alternate
          */
         private function variations_single_row( $item, &$alternate ) {
-            // when import product, if product is variable, then we have new product is duplicate from exists product
             // so we will get product variations of exists product
             $product_id = $item->id;
 //            $real_product_id = $item->get_product_id(); // get real product id

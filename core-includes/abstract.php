@@ -62,9 +62,6 @@ abstract class Fnt_Core
     private static function get_prefix($mode, $product_term)
     {
         $prefix = '';
-        if ($mode == 'export') {
-            $prefix = $product_term['term_id'] . ':';
-        }
         $grade = intval($product_term['grade']);
         for ($i = 1; $i <= $grade; $i++) {
             $prefix .= '  ';
@@ -86,43 +83,6 @@ abstract class Fnt_Core
         }
         return $result;
     }
-
-    /**
-     * @param $type
-     * @param string $mode
-     * @return array, get terms by type
-     */
-    public static function get_dropdownlist($type, $mode = 'export')
-    {
-        $array = array();
-        switch ($type) {
-            case Fnt_ProductListCons::COLUMN_CATEGORIES:
-                $terms_graded = self::get_terms_grade($type);
-                $array = self::get_terms_grade_array_name($terms_graded, $mode);
-                break;
-            case Fnt_ProductListCons::COLUMN_SHIPPING_CLASS:
-                $mode = 'export_shipping_class';
-                $terms_graded = self::get_terms_grade($type);
-                $array = self::get_terms_grade_array_name($terms_graded, $mode);
-                break;
-            default:
-                if (isset(Fnt_ProductListCons::$column_mapping[$type])) {
-                    $array = Fnt_ProductListCons::$column_mapping[$type];
-                }
-                if (Fnt_Core::attribute_name_exists($type)) {
-                    $terms = get_terms(wc_attribute_taxonomy_name($type), array('hide_empty' => 0));
-                    foreach ($terms as $term) {
-                        $array[$term->slug] = $term->name;
-                    }
-                }
-                break;
-        }
-        return $array;
-    }
-
-    /*
-     * End make dropdown list
-     */
 
     public static function convert_array_to_object($array = array())
     {

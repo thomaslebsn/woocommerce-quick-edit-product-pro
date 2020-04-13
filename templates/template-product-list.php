@@ -4,13 +4,9 @@ $message = !empty($template_args['messages']) ? $template_args['messages'] : "";
 $page_hook_name = !empty($template_args['page_hook_name']) ? $template_args['page_hook_name'] : "";
 $add_products_modal_box = !empty($template_args['add_products_modal_box']) ? $template_args['add_products_modal_box'] : "";
 $add_products_backbone_modal_box = !empty($template_args['add_products_backbone_modal_box']) ? $template_args['add_products_backbone_modal_box'] : "";
-$import_product_backbone_modal_box = !empty($template_args['import_product_backbone_modal_box']) ? $template_args['import_product_backbone_modal_box'] : "";
 $settings_backbone_modal_box = !empty($template_args['settings_backbone_modal_box']) ? $template_args['settings_backbone_modal_box'] : "";
 $wp_editor_backbone_modal_box = !empty($template_args['wp_editor_backbone_modal_box']) ? $template_args['wp_editor_backbone_modal_box'] : "";
-$export_product_backbone_modal_box = !empty($template_args['export_product_backbone_modal_box']) ? $template_args['export_product_backbone_modal_box'] : "";
 $add_product_data_init = !empty($template_args['add_product_data_init']) ? $template_args['add_product_data_init'] : array();
-$export_products_url = !empty($template_args['export_products_url']) ? $template_args['export_products_url'] : "#";
-$create_template_url = !empty($template_args['create_template_url']) ? $template_args['create_template_url'] : "#";
 $qs_page = !empty($template_args['qs_page']) ? $template_args['qs_page'] : "";
 $post_status = !empty($template_args['post_status']) ? $template_args['post_status'] : "";
 $qs_post_type = !empty($template_args['qs_post_type']) ? $template_args['qs_post_type'] : "";
@@ -19,9 +15,6 @@ $qs_post_type = !empty($template_args['qs_post_type']) ? $template_args['qs_post
     <h2>
         <?php
             $title = "WooCommerce Quick Edit Products Pro";
-            if(Fnt_Url_Handler::is_just_import_product()) {
-                $title .= '<span style="color: blue"> (Just import Product)</span>';
-            }
             echo $title;
         ?>
     </h2>
@@ -67,49 +60,29 @@ $qs_post_type = !empty($template_args['qs_post_type']) ? $template_args['qs_post
         <input type="hidden" name="page" value="<?php echo $qs_page; ?>" />
         <input type="hidden" name="admin-url" id="admin-url" value="<?php echo admin_url('/'); ?>" />
         <div id="table-header" class="block-cta">
-            <?php if(Fnt_Url_Handler::is_just_import_product()) { ?>
-                <a href="#" class="button button-primary button-large fnt-button-cta" disabled="disabled" id="button-save-product-in-current-page"><?php echo __('Save', 'fnt');?></a>
-            <?php } ?>
             <a href="#" class="button button-primary button-large save-all fnt-button-cta" disabled="disabled" id="button-save-all-product-data"><?php echo __('Save All', 'fnt');?></a>
-            <?php if(!Fnt_Url_Handler::is_just_import_product()) {
+            <?php
                 $admin_url = admin_url();
                 $add_new_product_link = $admin_url . 'post-new.php?post_type=product&amp;fnt_iframe_popup=1';
-                ?>
-                <a href="#" title="Add new product" link="<?php echo $add_new_product_link;?>" disabled="disabled" class="button button-primary button-large add-product-backbone-modal fnt-button-cta"><?php echo __('Add(s)', 'fnt');?></a>
-            <?php } ?>
-            <a href="#" class="button button-primary button-large import-product-backbone-modal fnt-button-cta" disabled="disabled"><?php echo __('Import by Excel', 'fnt');?></a>
-            <?php if(!Fnt_Url_Handler::is_just_import_product()) { ?>
-                <input type="hidden" name="current-export-url" id="current-export-url" value="<?php echo $export_products_url; ?>" />
-                <a href="#" class="button button-primary button-large export-product-backbone-modal fnt-button-cta" disabled="disabled"><?php echo __('Export to Excel', 'fnt');?></a>
-            <?php } ?>
+            ?>
+            <a href="#" title="Add new product" link="<?php echo $add_new_product_link;?>" disabled="disabled" class="button button-primary button-large add-product-backbone-modal fnt-button-cta"><?php echo __('Add(s)', 'fnt');?></a>
             <a href="#" class="button button-primary button-large settings-backbone-modal fnt-button-cta" disabled="disabled"><?php echo __('Settings', 'fnt');?></a>
-            <input type="hidden" name="create-template-url" id="create-template-url" value="<?php echo $create_template_url; ?>" />
         </div>
     <?php if ( ! empty( $message ) ) :
-            if ( $message == 1 ) {
-                $message = array( __('All your data were imported successfully!', 'fnt' ) );
-                $classes = "alert-success";
-            } else {
-                $classes = "alert-danger";
-            }
-            $message[] = __("Imported from file: '", 'fnt' ) . Fnt_ProductImportExport::get_excel_import_file_name() ."'.";
+        $classes = "alert-danger";
     ?>
-            <div class="bootstrap-wrapper">
-                <div class="alert <?php echo $classes;?> fade in">
-                    <a href="#" class="close" data-dismiss="alert">&times;</a>
-                    <?php echo __(implode("<br/>",$message),'fnt'); ?>
-                </div>
+        <div class="bootstrap-wrapper">
+            <div class="alert <?php echo $classes;?> fade in">
+                <a href="#" class="close" data-dismiss="alert">&times;</a>
+                <?php echo __(implode("<br/>",$message),'fnt'); ?>
             </div>
+        </div>
     <?php endif; ?>
 
         <form id="posts-filter" method="get" action="?post_type=product&page=quick-edit-product-pro-submenu-page">
             <input type="hidden" name="post_type" value="<?php echo $qs_post_type; ?>" />
             <input type="hidden" name="page" value="<?php echo $qs_page; ?>" />
             <input type="hidden" name="post_status" value="<?php echo $post_status; ?>" />
-            <?php
-            if(Fnt_Url_Handler::is_just_import_product()) {
-                echo '<input type="hidden" name="just-import-product" value="1"/>';
-            } ?>
             <input type="hidden" name="product-form-submit" value="1"/>
             <?php
             if(!empty($products_obj)){
@@ -158,20 +131,12 @@ $qs_post_type = !empty($template_args['qs_post_type']) ? $template_args['qs_post
     <?php echo $add_products_backbone_modal_box; ?>
 <?php endif; ?>
 
-<?php if(!empty($import_product_backbone_modal_box)) : ?>
-    <?php echo $import_product_backbone_modal_box; ?>
-<?php endif; ?>
-
 <?php if(!empty($settings_backbone_modal_box)) : ?>
     <?php echo $settings_backbone_modal_box; ?>
 <?php endif; ?>
 
 <?php if(!empty($wp_editor_backbone_modal_box)) : ?>
     <?php echo $wp_editor_backbone_modal_box; ?>
-<?php endif; ?>
-
-<?php if(!empty($export_product_backbone_modal_box)) : ?>
-    <?php echo $export_product_backbone_modal_box; ?>
 <?php endif; ?>
 
 <script type="text/html" id='tmpl-gallery-default-html'>

@@ -2,38 +2,7 @@
 require_once FNT_DIR_CORE_INCLUDES . '/abstract.php';
 class Fnt_ProductActionManagement extends Fnt_Core {
     public function __construct(){}
-    public function save_export_columns_setting($posted_data){
-        $selected_columns = (isset($posted_data['selectedColumns']) && !empty($posted_data['selectedColumns'])) ? $posted_data['selectedColumns'] : "";
-        $response = $this->response_handler(false,array('message' => __('Save setting is failed!', 'fnt')));
-        try{
-            if(empty($selected_columns)) return $response;
-            update_option('fnt-export-columns-setting',$selected_columns);
-            $response = $this->response_handler(true,array('message' => __('Save setting is done successfully!', 'fnt')));
-        } catch (Exception $ex){
-        }
-        return $response;
-    }
-    public function save_create_template_setting($posted_data){
-        $selected_columns = (isset($posted_data['selectedColumns'])
-            && !empty($posted_data['selectedColumns'])) ? $posted_data['selectedColumns'] : "";
-        $selected_product_type = (isset($posted_data['selectedProductType'])
-            && !empty($posted_data['selectedProductType'])) ? $posted_data['selectedProductType'] : "";
-        $selected_attributes = (isset($posted_data['selectedAttribute'])
-            && !empty($posted_data['selectedAttribute'])) ? $posted_data['selectedAttribute'] : "";
-        $response = $this->response_handler(false,array('message' => 'Save setting is failed!'));
-        try{
-            if(empty($selected_columns) || empty($selected_product_type)) return $response;
-            $create_template_setting = array(
-                'selected_columns' => $selected_columns,
-                'selected_product_type' => $selected_product_type,
-                'selected_attribute' => $selected_attributes
-            );
-            update_option('fnt-template-columns-setting',$create_template_setting);
-            $response = $this->response_handler(true,array('message' => __('Save setting is done successfully!', 'fnt')));
-        } catch (Exception $ex){
-        }
-        return $response;
-    }
+
     private function autocomplete_product_tag($posted_data = '') {
         $args = array(
             'orderby'           => 'name',
@@ -68,7 +37,7 @@ class Fnt_ProductActionManagement extends Fnt_Core {
         }
         return $this->response_handler(true,array('message'=> json_encode($product_tag,true)));
     }
-    private function multiple_edit_inline($posted_data = array(), $just_import = false, $save_all = false, &$error_array = array()){
+    private function multiple_edit_inline($posted_data = array(), &$error_array = array()){
         $array_edit = array();
         $array_add = array();
         if(!empty($posted_data) && is_array($posted_data) ){
@@ -79,13 +48,6 @@ class Fnt_ProductActionManagement extends Fnt_Core {
                 if($item[Fnt_ProductListCons::COLUMN_ID] < 0){
                     array_push($array_add,$item);
                 }
-            }
-            if($just_import) {
-                WC_Product_Temp_Custom::update_products($posted_data, $error_array);
-                if($save_all == "1") {
-                    WC_Product_Temp_Custom::save_all_temp_product();
-                }
-                return true;
             }
             WC_Product_Custom::update_products($array_edit, $error_array);
             return true;
@@ -202,7 +164,7 @@ class Fnt_ProductActionManagement extends Fnt_Core {
                     break;
                 case 'edit_multiple': // when edit inline
                     // check all data was passed
-                    $data_passed = isset( $_POST['all_product_data'] ) && isset( $_POST['all_product_content'] ) && isset( $_POST['just_import'] ) && isset( $_POST['save_all'] );
+                    $data_passed = isset( $_POST['all_product_data'] ) && isset( $_POST['all_product_content'] );
                     if ( $data_passed ) { // if passed
                         $all_product_data = Fnt_Core::extractPassedData($_POST['all_product_data']);
                         // if extract data of product list is not empty and is an array
@@ -224,7 +186,7 @@ class Fnt_ProductActionManagement extends Fnt_Core {
                             // and variation_description, variable attributes since ver 1.1
                             $all_product_content = null;
 
-                            $this->multiple_edit_inline($all_product_data, $_POST['just_import'], $_POST['save_all'],$error_array);
+                            $this->multiple_edit_inline($all_product_data, $error_array);
                             if ( empty( $error_array ) ) {
                                 if ( ! isset( $_POST['save_variation'] ) ) {
                                     if($_POST['save_all'] == "1"){
@@ -245,12 +207,6 @@ class Fnt_ProductActionManagement extends Fnt_Core {
                         $data = array('error_array' => array( __( 'Lost data when edit inline!', 'fnt' )),'save_all' => 'failed');
                         $json_response = $this->response_handler(false, $data);
                     }
-                    break;
-                case 'save_export_columns_setting':
-                    $json_response = $this->save_export_columns_setting($_POST);
-                    break;
-                case 'save_create_template_setting':
-                    $json_response = $this->save_create_template_setting($_POST);
                     break;
                 case 'save_all_product_data':
                     $json_response = $this->response_handler(true, array('message' => 'Request is not available'));

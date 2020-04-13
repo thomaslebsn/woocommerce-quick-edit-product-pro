@@ -1,18 +1,17 @@
 <?php
 /**
- * Plugin Name: Woocommerce Quick Edit Products Pro
- * Plugin URI: http://finalthemes.com/modules/woocommerce-quick-edit-products-pro.html
+ * Plugin Name: Woo Bulk Edit Products Premium
+ * Plugin URI: []
  * Description: This plugin help us to interact easily with products on actions, such as add/edit/delete multiple products.
- *              Powerfully functions are integrated to support us as Import and Export products data via Excel/CSV file type.
- * Version: 1.2.0
- * Author: FinalThemes
- * Author URI: http://finalthemes.com/
- * Developer: FinalThemes
- * Developer URI: http://finalthemes.com/
- * Text Domain: quick-edit-products-pro
+ * Version: 1.0.0
+ * Author: ThomasLe
+ * Author URI: http://thomaslebsn.info
+ * Developer: ThomasLe
+ * Developer URI: http://thomaslebsn.info/
+ * Text Domain: woo-bulk-edit-product-premium
  * Domain Path: /languages
  *
- * Copyright: © 2015 FinalThemes - All rights reserved.
+ * Copyright: © 2020 ThomasLe - All rights reserved.
  * License: GNU General Public License v3.0
  * License URI: http://www.gnu.org/licenses/gpl-3.0.html
  */
@@ -39,10 +38,6 @@ define('FNT_DIR_ASSETS',FNT_DIR_PLUGIN . '/assets');
 $upload_dir = wp_upload_dir();
 define('FNT_DIR_UPLOAD_BASE', $upload_dir['basedir']);
 define('FNT_URL_UPLOAD_BASE', $upload_dir['baseurl']);
-define('FNT_DIR_IMPORT', FNT_DIR_UPLOAD_BASE . '/fnt-import');
-define('FNT_DIR_EXPORT', FNT_DIR_UPLOAD_BASE . '/fnt-export');
-define('FNT_URL_EXPORT', FNT_URL_UPLOAD_BASE . '/fnt-export');
-
 
 //Required functions - require all file into /includes/*
 require_once($base . '/main-process.php');

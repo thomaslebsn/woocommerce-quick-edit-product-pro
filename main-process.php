@@ -11,7 +11,6 @@ class Fnt_QEPP{
 
     protected $product_list_management_class = null;
     protected $product_action_management_class = null;
-    protected $product_import_export_class = null;
     protected $page_hook_name = null;
     protected $preserved_markup_editor_class = null;
 
@@ -85,17 +84,14 @@ class Fnt_QEPP{
         require_once(FNT_DIR_CORE_INCLUDES . '/' . 'define-constant.php');
         require_once(FNT_DIR_CORE_INCLUDES . '/' . 'product-list-management.php');
         require_once(FNT_DIR_CORE_INCLUDES . '/' . 'product-action-management.php');
-        require_once(FNT_DIR_CORE_INCLUDES . '/' . 'product-import-export.php');
         require_once(FNT_DIR_CORE_INCLUDES . '/' . 'debug.php');
         require_once(FNT_DIR_CORE_INCLUDES . '/' . 'logs.php');
 
         if(class_exists('Fnt_ProductListManagement')
             && class_exists('Fnt_ProductActionManagement')
-            && class_exists('Fnt_ProductImportExport')
         ){
             $this->product_action_management_class = new Fnt_ProductActionManagement();
             $this->product_list_management_class = new Fnt_ProductListManagement();
-            $this->product_import_export_class = new Fnt_ProductImportExport();
 
             add_action( 'wp_ajax_fnt_product_manage', array($this->product_action_management_class, 'action_controller_callback') );
             add_action( 'wp_ajax_nopriv_fnt_product_manage', array($this->product_action_management_class, 'action_controller_callback') );
@@ -124,34 +120,6 @@ class Fnt_QEPP{
             $action = "submit-form";
         }
         switch ($action) {
-            case "import_products":
-                if(isset($_FILES['input-file-importing']) && !empty($_FILES['input-file-importing'])) {
-                    $result_import = $this->product_import_export_class->get_import()->proceed_importing_products($_FILES['input-file-importing']);
-                    if( ! $result_import ) {
-                        $import_message = $this->product_import_export_class->get_import()->getMessages();
-                    } else {
-                        $import_message = 1;
-                    }
-                    update_option('product-import-messages', $import_message);
-                }
-                $just_import_product = self::get_redirect_page_url(array('just-import-product' => 1));
-                wp_redirect($just_import_product);
-                exit;
-                break;
-            case "export_products":
-                if(isset($_GET['pu']) && !empty($_GET['pu'])) {
-                    $selected_export_columns_setting = Fnt_ProductImportExport::get_export_columns_setting();
-                    $query_products_url = self::decode_current_admin_url();
-                    if(!empty($query_products_url)){
-                        $this->product_import_export_class->get_export()->proceed_exporting_products($selected_export_columns_setting, $query_products_url);
-                    }
-                }
-                wp_redirect(self::get_redirect_page_url());
-                break;
-            case "create_excel_template":
-                $selected_columns_template_product = Fnt_ProductImportExport::get_template_columns_setting();
-                $this->product_import_export_class->get_template()->proceed_exporting_template_products_by_cols_setting($selected_columns_template_product);
-                break;
             case "submit-form":
                 // cpr : current-products-results - containing all query string on previous url
                 if(!empty($_POST['products'])) {
@@ -162,19 +130,7 @@ class Fnt_QEPP{
                 }
                 wp_redirect(self::get_redirect_page_url());
                 break;
-            case "delete_temp_products":
-                WC_Product_Temp_Custom::delete_temp_data();
-                wp_redirect(self::get_redirect_page_url());
-                break;
-            case "show_import_excel_error":
-                echo "<pre>";
-                echo "List of error when import: \n".implode("\n",Fnt_ExcelImport::get_import_error());
-                echo "</pre>";
-                die();
-                break;
             default:
-                $messages = get_option('product-import-messages', array());
-                delete_option('product-import-messages');
                 // for example
                 $add_product_data_init = $this->product_management_get_default_post_to_edit('product',array());
                 // $qs_args : query string arguments
@@ -195,40 +151,20 @@ class Fnt_QEPP{
                 } else {
                     $post_type = "product";
                 }
-                $export_url_args = array(
-                    'fnt_action' => 'export_products',
-                    'pu' => base64_encode(self::get_current_admin_url())
-                );
-                $export_products_url = self::get_redirect_page_url($export_url_args);
-                $create_template_args = array(
-                    'fnt_action' => 'create_excel_template'
-                );
-                $create_template_url = self::get_redirect_page_url($create_template_args);
                 $add_product_backbone_modal_box = self::hm_get_template_part(FNT_DIR_TEMPLATE . '/template-backbone-modals.php', array(
                     'page_hook_name' => $this->page_hook_name,
                     'add_product_data_init' => $add_product_data_init
                 ));
-                $import_product_backbone_modal_box = self::hm_get_template_part(FNT_DIR_TEMPLATE . '/template-import-products-modal.php', array(
-                    'page_hook_name' => $this->page_hook_name,
-                    'form_import_products_url' => self::get_redirect_page_url(array('fnt_action' => 'import_products')),
-                ));
+
                 $settings_backbone_modal_box = self::hm_get_template_part(FNT_DIR_TEMPLATE . '/template-settings-modal.php', array(
                     'page_hook_name' => $this->page_hook_name
                 ));
-                $export_product_backbone_modal_box = self::hm_get_template_part(FNT_DIR_TEMPLATE . '/template-export-product-modal.php', array(
-                    'export_obj' => $this->product_import_export_class->get_export(),
-                    'page_hook_name' => $this->page_hook_name
-                ));
+
                 echo self::hm_get_template_part(FNT_DIR_TEMPLATE . '/template-product-list.php',
-                    array('messages' => $messages,
-                        'products_obj' => $this->product_list_management_class->products_obj,
+                    array('products_obj' => $this->product_list_management_class->products_obj,
                         'add_products_backbone_modal_box' => $add_product_backbone_modal_box,
-                        'import_product_backbone_modal_box' => $import_product_backbone_modal_box,
                         'settings_backbone_modal_box' => $settings_backbone_modal_box,
-                        'export_product_backbone_modal_box' => $export_product_backbone_modal_box,
                         'page_hook_name' => $this->page_hook_name,
-                        'export_products_url' => $export_products_url,
-                        'create_template_url' => $create_template_url,
                         'qs_page' => $page, // param $page inner query string on url
                         'post_status' => $post_status, // param $post_status inner query string on url
                         'qs_post_type' => $post_type, // param $post_type inner query string on url
@@ -290,7 +226,6 @@ class Fnt_QEPP{
             wp_enqueue_script( 'fnt_woocommerce_admin', WC()->plugin_url() . '/assets/js/admin/woocommerce_admin' . $suffix . '.js', array( 'jquery-tiptip' ), FNT_QEPP_VERSION, true );
             wp_enqueue_style( 'fnt_custom_admin_stylesheet', FNT_URL_PLUGIN . '/assets/css/custom-admin.css', array(), FNT_QEPP_VERSION );
         } else {
-            $just_import = Fnt_Url_Handler::is_just_import_product();
             wp_enqueue_style( 'fnt_stylesheets', FNT_URL_PLUGIN . 'assets/css/stylesheet.css', false, FNT_QEPP_VERSION, 'all' );
             wp_enqueue_style( 'fnt_backbone_modal_css', FNT_URL_PLUGIN . 'assets/css/stylesheet-backbone-modal.css', false, FNT_QEPP_VERSION, 'all' );
             wp_enqueue_script( 'fnt_core_js', FNT_URL_PLUGIN . 'assets/js/core.js', array(), FNT_QEPP_VERSION, true );
@@ -300,7 +235,6 @@ class Fnt_QEPP{
                                     'wrap_image' => '%wrap_image%
                                     %remove_image_default%',
                                     'plugin_base_url' => self::get_redirect_page_url(),
-                                    'just_import' => $just_import,
                                     'fnt-setting-data' => get_option( 'fnt-settings-data', '' ),
                                     'weight_unit' => Fnt_Core::get_weight_unit(),
                                     'dimension_unit' => Fnt_Core::get_dimension_unit(),
@@ -321,8 +255,6 @@ class Fnt_QEPP{
             wp_enqueue_script( 'fnt_settings_modal_js', FNT_URL_PLUGIN . 'assets/js/settings-modal.js', array(), FNT_QEPP_VERSION, true );
             wp_enqueue_script( 'fnt_wp_editor_modal_js', FNT_URL_PLUGIN . 'assets/js/wp-editor-modal.js', array(), FNT_QEPP_VERSION, true );
             wp_enqueue_script( 'fnt_settings_submission_js', FNT_URL_PLUGIN . 'assets/js/settings.js', array(), FNT_QEPP_VERSION, true );
-            wp_enqueue_script( 'fnt_import_product_modal_js', FNT_URL_PLUGIN . 'assets/js/import-product-modal.js', array(), FNT_QEPP_VERSION, true );
-            wp_enqueue_script( 'fnt_export_product_modal_js', FNT_URL_PLUGIN . 'assets/js/export-product-modal.js', array(), FNT_QEPP_VERSION, true );
             wp_localize_script( 'fnt_add_product_modal_js', 'meta_image',
                                 array(
                                     'title' => __( 'Choose or Upload an Image', 'prfx-textdomain' ),
@@ -368,12 +300,8 @@ class Fnt_QEPP{
             wp_enqueue_script( 'fnt_backform_add_new_external_product', FNT_URL_PLUGIN . 'assets/js/backform/form-external-product.js', array(), FNT_QEPP_VERSION, true );
             wp_enqueue_script( 'fnt_backform_add_new_variable_product', FNT_URL_PLUGIN . 'assets/js/backform/form-variable-product.js', array(), FNT_QEPP_VERSION, true );
             wp_enqueue_script( 'fnt_backform_excel_template_setting', FNT_URL_PLUGIN . 'assets/js/backform/form-excel-template-setting.js', array(), FNT_QEPP_VERSION, true );
-            wp_enqueue_script( 'fnt_backform_excel_export_product', FNT_URL_PLUGIN . 'assets/js/backform/form-export-product.js', array(), FNT_QEPP_VERSION, true );
             wp_enqueue_script( 'fnt_backform_settings', FNT_URL_PLUGIN . 'assets/js/backform/form-settings.js', array(), FNT_QEPP_VERSION, true );
 
-            wp_localize_script( 'fnt_backform_excel_export_product', 'data_export_columns_setting',
-                                Fnt_ExcelExport::get_array_column_for_js()
-            );
             //enqueue script of auto-complete text
             wp_enqueue_script( 'suggest' );
 

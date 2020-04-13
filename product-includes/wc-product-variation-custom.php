@@ -17,15 +17,14 @@
 
             /* Get main product data from parent (args) */
             $this->id = ! empty( $args['parent_id'] ) ? intval( $args['parent_id'] ) : wp_get_post_parent_id( $this->variation_id );
-
             // The post doesn't have a parent id, therefore its invalid.
             if ( empty( $this->id ) ) {
                 return;
             }
-
             $this->product_type = 'variation';
             $this->parent       = ! empty( $args['parent'] ) ? $args['parent'] : wc_get_product( $this->id );
-            $this->post         = ! empty( $this->parent->post ) ? $this->parent->post : array();
+            $this->post         = ! empty( $this->parent->data ) ? $this->parent->data : array();
+
             // @since 1.1
             parent::__construct( $variation );
         }

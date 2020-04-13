@@ -16,7 +16,6 @@
             require_once FNT_DIR_PRODUCT_INCLUDES . '/wc-product-external-custom.php';
             require_once FNT_DIR_PRODUCT_INCLUDES . '/wc-product-variable-custom.php';
             require_once FNT_DIR_PRODUCT_INCLUDES . '/wc-product-variation-custom.php';
-            require_once FNT_DIR_PRODUCT_INCLUDES . '/wc-product-temp-custom.php';
 
             if ( ! class_exists( 'WP_List_Table' ) ) {
                 require_once( ABSPATH . 'wp-admin/includes/class-wp-list-table.php' );
