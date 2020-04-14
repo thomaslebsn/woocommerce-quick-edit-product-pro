@@ -8,7 +8,7 @@
  * Author URI: http://thomaslebsn.info
  * Developer: ThomasLe
  * Developer URI: http://thomaslebsn.info/
- * Text Domain: woo-bulk-edit-product-premium
+ * Text Domain: woocommerce-bulk-edit-product-premium
  * Domain Path: /languages
  *
  * Copyright: © 2020 ThomasLe - All rights reserved.

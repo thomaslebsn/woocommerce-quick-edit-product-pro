@@ -71,7 +71,7 @@ class Fnt_QEPP{
     }
 
     static function plugin_activated_checker(){
-        return in_array( 'quick-edit-products-pro/quick-edit-products-pro.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) );
+        return in_array( 'woocommerce-bulk-edit-products-premium/woocommerce-bulk-edit-products-premium.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) );
     }
 
     public function run(){
