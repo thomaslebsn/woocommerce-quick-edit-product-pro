@@ -1,5 +1,5 @@
 *** WooCommerce Bulk Edit Products Premium Changelog ***
 
-2020.04.14 - version 1.0.0
-    - First Release
+2020.04.17 - version 1.0.0
+    - Initial release
 
