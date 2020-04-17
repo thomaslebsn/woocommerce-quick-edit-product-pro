@@ -780,23 +780,6 @@
             echo "<tr class='main-row-$product_id $class_color $alternate' $attr>";
             $this->single_row_columns( $item );
             echo '</tr>';
-
-            // @since ver 1.1
-            // if product type is variable, add row to show variations
-            if ( $item->product_type == 'variable' ) {
-                $this->variations_single_row( $item, $alternate );
-            }
-            // @since ver 1.6
-            // If product type is simple, add row to show attributes
-            if ( $item->product_type == 'simple' ) {
-                $alternate = 'alternate' == $alternate ? '' : 'alternate';
-                echo "<tr class='$alternate'>";
-                echo '</tr>';
-                $alternate = 'alternate' == $alternate ? '' : 'alternate';
-                echo "<tr class='hidden attributes-wrapper-row attributes-row-of-$product_id $alternate' product-id='$product_id'>";
-                $this->attributes_single_row_column( $item );
-                echo '</tr>';
-            }
         }
 
         /*
